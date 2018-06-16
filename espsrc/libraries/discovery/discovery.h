@@ -8,7 +8,7 @@ public:
     Discovery() : _rx_buf(256, '\0')
     { }
 
-    void setup_discovery(uint16_t port)
+    void start(uint16_t port)
     {
         _udp.begin(port);
     }
