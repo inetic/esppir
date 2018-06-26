@@ -50,11 +50,14 @@ private:
 
         if (s != "discover") return;
 
-        for (const auto& p : _map) {
+        for (auto i = _map.begin(); i != _map.end(); ++i) {
             _udp.beginPacket(remote_ip, remote_port);
-            _udp.write(p.first.c_str());
+            _udp.write(i->first.c_str());
             _udp.write(":");
-            _udp.write(p.second.c_str());
+            _udp.write(i->second.c_str());
+            if (std::next(i) != _map.end()) {
+                _udp.write(" ");
+            }
             _udp.endPacket();
         }
     }
